@@ -1,0 +1,15 @@
+---
+- hosts: ykyk
+  remote_user: root
+  tasks:
+  - name: copy_file 
+    copy: src=/tmp/hello.c dest=/tmp/hello.c
+
+  - name: change mode
+    file: dest=/tmp/hello.c mode=500 owner=root group=root
+
+  - name: ensure packages installed
+    yum: pkg={{item}} state=present
+    with_items:
+      - tmux
+      - git

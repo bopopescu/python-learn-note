@@ -1,0 +1,5 @@
+[DEFAULT]
+smtp_server = smtp.163.com
+smtp_port = 465
+username = 15840251806@163.com
+password = young319

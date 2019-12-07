@@ -1,0 +1,7 @@
+pyexpect
+paramiko
+Polysh
+Fabric
+pip install  pycrypto
+pip install  ecdsa
+python2 api fabric==1.14.0
