@@ -86,7 +86,6 @@ class DatacenterRack(ToDictMixin, JsonMixin):
 
 
 class Switch(ToDictMixin, JsonMixin):
-
     def __init__(self, **kwargs):
         self.kwargs = kwargs
 
@@ -111,7 +110,6 @@ roundtrip = deserialized.to_json()
 print(roundtrip)
 
 assert json.loads(serialized) == json.loads(roundtrip)
-
 
 """
 能用mix-in组件实现的效果，就不要用多重继承实现
