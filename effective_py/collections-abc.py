@@ -35,10 +35,33 @@ print(bar.__getitem__(0))
 class IndexableNode(BinaryNode):
 
     def _search(self, count, index):
-        return 1, 2
+        if not self.left and not self.right:
+            return
+
+        while index > 0:
+            index -= 1
+
+    def _pre_traverse(self, root):
+        if not root:
+            return
+        self._pre_traverse(root.left)
+        self._pre_traverse(root.right)
 
     def __getitem__(self, index):
         found, _ = self._search(0, index)
         if not found:
             raise IndexError("Index out of range")
         return found.value
+
+
+tree = IndexableNode(
+    10,
+    left=IndexableNode(
+        5,
+        left=IndexableNode(2),
+        right=IndexableNode(
+            6, right=IndexableNode(7))),
+    right=IndexableNode(
+        15, left=IndexableNode(11)
+    )
+)
