@@ -55,6 +55,6 @@ class BetterCustomer(DatabaseRow):
 
 print("-" * 100)
 new_foo = BetterCustomer()
-print("Before:", repr(new_foo.first_name), foo.__dict__)
-foo.first_name = "Euler"
-print("After: ", repr(new_foo.first_name), foo.__dict__)
+print("Before:", repr(new_foo.first_name), new_foo.__dict__)
+new_foo.first_name = "Euler"
+print("After: ", repr(new_foo.first_name), new_foo.__dict__)
