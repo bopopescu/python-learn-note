@@ -17,5 +17,5 @@ def generate_data(file_obj):
 
 
 if __name__ == "__main__":
-    with open("./prac_for_sort.txt", "w+") as f:
+    with open("/tmp/prac_for_sort.txt", "w+") as f:
         generate_data(f)

@@ -30,3 +30,6 @@ def sqrt_a(x):
 
 if __name__ == '__main__':
     print(sqrt_a(0.000000000000089897))
+
+    with open("/tmp/test.txt", "w+", encoding="utf-8") as f:
+        print("hello", file=f)
