@@ -9,6 +9,8 @@
 	f.	invalid ---- 匹配不了以上规则的则为无效密码
 
 '''
+import re
+
 
 number_set = set([n for n in range(48, 58)])
 lower_letter_set = set([n for n in range(97, 123)])
@@ -57,4 +59,39 @@ def judge_upper_letter(string_set):
 def judge_special_letter(string_set):
     return bool(special_letter_set & string_set)
 
+def judge_pass_with_re(password):
+    default_res = [False] * 4
+    default_res[0] = re_judge_number(password) 
+    default_res[1] = re_judge_lower_letter(password) 
+    default_res[2] = re_judge_upper_letter(password) 
+    default_res[3] = re_judge_special_letter(password) 
+    print(default_res)
+    print("-----> ", password)
+    if 4 <= len(password) <= 8:
+        if default_res.count(False) == 0:
+            return "strong"
+        elif default_res.count(False) == 1 and (default_res[0] is False or \
+                                                default_res[3] is False):
+            return "medium"
+        elif default_res.count(False) == 2 and (default_res[1] is False or \
+                                               default_res[2] is False):
+            return "weak"
+        elif default_res.count(False) == 3:
+            return "very weak"
 
+    elif 8 < len(password) <= 32 and default_res.count(False) == 0:
+        return "very strong"
+    else:
+        return "invalid"
+
+def re_judge_number(string):
+    return bool("".join(re.findall("\d*", string)))
+
+def re_judge_lower_letter(string):
+    return bool("".join(re.findall("[a-z]*", string)))
+
+def re_judge_upper_letter(string):
+    return bool("".join(re.findall("[A-Z]*", string)))
+
+def re_judge_special_letter(string):
+    return bool("".join(re.findall("\W*", string)))
