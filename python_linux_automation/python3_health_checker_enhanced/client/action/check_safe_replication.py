@@ -17,22 +17,22 @@ class CheckSafeReplication(object):
     def __init__(self, params):
         self.params = params
 
-    def get_slave_status(self):
+    def get_subordinate_status(self):
         res = {}
-        slave_status_dict = Env.database.get_slave_status_dict()
-        res['slave_io_running'] = slave_status_dict['Slave_IO_Running']
-        res['slave_sql_running'] = slave_status_dict['Slave_SQL_Running']
-        res['last_io_error'] = slave_status_dict['Last_IO_Error']
-        res['last_sql_error'] = slave_status_dict['Last_SQL_Error']
+        subordinate_status_dict = Env.database.get_subordinate_status_dict()
+        res['subordinate_io_running'] = subordinate_status_dict['Subordinate_IO_Running']
+        res['subordinate_sql_running'] = subordinate_status_dict['Subordinate_SQL_Running']
+        res['last_io_error'] = subordinate_status_dict['Last_IO_Error']
+        res['last_sql_error'] = subordinate_status_dict['Last_SQL_Error']
 
         returnr res
 
     def __call__(self):
-        res = dict(is_slave=Env.database.is_slave)
+        res = dict(is_subordinate=Env.database.is_subordinate)
 
-        if Env.database.is_slave:
+        if Env.database.is_subordinate:
             res.update(Env.database.get_multi_variables_value('relay_log_recovery',
                                                              'relay_log_info_repository'))
-            res.update(self.get_slave_status())
+            res.update(self.get_subordinate_status())
 
         return res

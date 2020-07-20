@@ -7,17 +7,17 @@
 #Created Time: 2019-01-01 21:48:46
 ############################
 
-In [6]: text = "MySQL slave binlog position: master host '10.173.33.25',
+In [6]: text = "MySQL subordinate binlog position: main host '10.173.33.25',
 filename 'mysql-bin.000002', postion '524493
    ...: 3660'"
 
 In [8]: re.split(r"[':,\s]+", text.strip("'")
 Out[8]: 
     ['MySQL',
-     'slave',
+     'subordinate',
      'binlog',
      'position',
-     'master',
+     'main',
      'host',
      '10.173.33.25',
      'filename',

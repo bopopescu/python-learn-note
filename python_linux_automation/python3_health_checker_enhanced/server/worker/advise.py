@@ -19,8 +19,8 @@ class Advise(object):
     max_connection_warning="数据库连接数过多容易造成线程频繁的上下文切换，连接数过少不能充分发挥数据库的性能，您的数据库连接数是{0}，你的buffer pool大小是{1}，建议您的数据库连接数设置在{2}~{3}范围内，也可以直接设置为{4}"
 
 
-    slave_io_running_error="您的从机IO线程没有运行，请立刻手动修复该线程"
-    slave_sql_running_error="您的从机SQL线程没有运行，请立刻手动修复该线程"
+    subordinate_io_running_error="您的从机IO线程没有运行，请立刻手动修复该线程"
+    subordinate_sql_running_error="您的从机SQL线程没有运行，请立刻手动修复该线程"
     last_io_error="您的从机复制出错，详情请查看Last_IO_Error信息，请立即手动修复该错误"
     last_sql_error="您的从机复制出错，详情请查看Last_SQL_Error信息，请立即手动修复该错误"
     relay_log_recovery="您的从机配置参数relay_log_recovery设置为{0}，从机宕机后存在主从数据不一致的风险，请修改该参数为{1}"
@@ -36,7 +36,7 @@ class Advise(object):
 # IndexCardinalityTooLow=您的数据库{0}下的表{1}索引列区分度低于{2}，您可以考虑删除该索引。索引名：{3}，列区分度：{4}%
 # InvalidIndex=您的数据库{0}下的表{1}存在{2}天未被使用过的索引，您可以考虑删除该索引列。索引名：{3}
 #
-# SlaveThreadNotRuning=您的从机复制线程SLave
+# SubordinateThreadNotRuning=您的从机复制线程SLave
 # Thread已经中断，请立刻手动修复复制线程
 #
 

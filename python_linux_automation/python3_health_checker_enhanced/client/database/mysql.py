@@ -24,17 +24,17 @@ class DatabaseManager(object):
         return self.pool.exec_sql(sql)
 
     def get_binlog_size(self):
-        sql = 'show master logs'
+        sql = 'show main logs'
         rows = self.exec_sql(sql)
         return  sum(long(row[1] for row in rows))
 
     @property
-    def is_slave(self):
-        rows = self.exec_sql('show slave status')
+    def is_subordinate(self):
+        rows = self.exec_sql('show subordinate status')
         return bool(rows)
 
-    def get_slave_status_dict(self):
-        rows = self.exec_sql('show slave status')
+    def get_subordinate_status_dict(self):
+        rows = self.exec_sql('show subordinate status')
         return dict(rows)
 
     def get_variables_value(self, variable):

@@ -23,8 +23,8 @@ class CheckSafeReplication(GenericWorker):
             return
         else:
             self.body = result.get('body')
-            is_slave = self.body.get('is_slave')
-            if not is_slave:
+            is_subordinate = self.body.get('is_subordinate')
+            if not is_subordinate:
                 return
             else:
                 self.do_check()
@@ -36,12 +36,12 @@ class CheckSafeReplication(GenericWorker):
         self.check_relay_log_recovery()
 
     def check_io_thread(self):
-        slave_io_running = self.body.get('slave_io_running')
+        subordinate_io_running = self.body.get('subordinate_io_running')
         last_io_error = self.body.get('last_io_error')
 
         result = CheckResult.get_result_template(self, CheckResult.middle)
-        if slave_io_running.lower() != 'yes':
-            result.advise = Advise.slave_io_running_error
+        if subordinate_io_running.lower() != 'yes':
+            result.advise = Advise.subordinate_io_running_error
             result.score = -result.score
 
         self.rs.append(result)
